@@ -116,7 +116,7 @@ function enableFindVaultForm() {
 		$('#author-spend-source-address-input').val(address);
 		$('.spend-source-address').html(address);
 		$('.spend-source-version').html(version);
-		$('.spend-source-balance').html(balance);
+		$('.spend-source-balance').html(balance.toFixed());
 		$("#find-vault").prop('hidden', true);
 		$('#author-spend').prop('hidden', false);
 	    },
@@ -156,9 +156,9 @@ function enableAuthorSpendAddressInputFeedback() {
 }
 
 function validateAmount(amount, balance) {
-    var amount = parseFloat(amount);
-    var balance = parseFloat(balance);
-    if (amount <= balance) {
+    var amount = new BigNumber(amount);
+    var balance = new BigNumber(balance);
+    if (amount.lessThanOrEqualTo(balance)) {
 	if (amount > 0) {
 	    return {valid: true};
 	} else {
@@ -206,7 +206,7 @@ function getMessageToSign(source, destination, amount, callback, errback) {
 		    } else {
 			contract.generateMessageToSign.call(
 			    destination, 
-			    ethToWei(parseFloat(amount)), 
+			    ethToWei(new BigNumber(amount)), 
 			    function(messageError, message) {
 				if (messageError) {
 				    console.error(messageError);
@@ -389,7 +389,7 @@ var SPEND_GAS_LIMIT = 1000000;
 function broadcastSpend(callback, errback) {
     var source      = $('.spend-source-address').html();
     var destination = $('.spend-destination-address').html();
-    var amount      = ethToWei(parseFloat($('.spend-amount').html()));
+    var amount      = ethToWei(new BigNumber($('.spend-amount').html()));
     var sigs        = currentSignatures();
     console.log('TEST', source, destination, amount, sigs);
     withValidAccount(

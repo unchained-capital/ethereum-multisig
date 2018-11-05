@@ -1,9 +1,9 @@
 function weiToEther(wei) {
-    return wei / 1000000000000000000 // 1e18
+    return wei.dividedBy(new BigNumber("1000000000000000000")); // 1e18
 }
 
 function ethToWei(eth) {
-    return eth * 1000000000000000000 // 1e18
+    return eth.times(new BigNumber("1000000000000000000")); // 1e18
 }
 
 function formatFloat(n, places, noCommas) {

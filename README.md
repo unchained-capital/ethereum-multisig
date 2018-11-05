@@ -1,3 +1,8 @@
+**WARNING**: This version of the ethereum multisig contract and dapp
+does not work with current Trezor firmware.
+If you have funds in a v1 contract, you can use
+this dapp to move your funds if you use a Trezor with firmware < v1.6.2.
+
 Ethereum Multisig
 =================
 
