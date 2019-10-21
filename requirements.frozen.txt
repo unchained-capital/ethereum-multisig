@@ -9,7 +9,7 @@ coincurve==8.0.0
 coverage==4.5.1
 cytoolz==0.9.0.1
 dictionaries==0.0.1
-ecdsa==0.13
+ecdsa==0.13.3
 eth-abi==1.1.1
 eth-account==0.2.3
 eth-hash==0.1.4
